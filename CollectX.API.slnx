@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="CollectX.API.Application/CollectX.API.Application.csproj" />
+  <Project Path="CollectX.API.Common/CollectX.API.Common.csproj" />
+  <Project Path="CollectX.API.Contracts/CollectX.API.Contracts.csproj" />
+  <Project Path="CollectX.API.Database/CollectX.API.Database.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="CollectX.API.Infrastructure/CollectX.API.Infrastructure.csproj" />
+  <Project Path="CollectX.API/CollectX.API.csproj" />
+</Solution>
