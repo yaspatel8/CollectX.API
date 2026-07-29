@@ -2,7 +2,7 @@
   <Project Path="CollectX.API.Application/CollectX.API.Application.csproj" />
   <Project Path="CollectX.API.Common/CollectX.API.Common.csproj" />
   <Project Path="CollectX.API.Contracts/CollectX.API.Contracts.csproj" />
-  <Project Path="CollectX.API.Database/CollectX.API.Database.sqlproj">
+  <Project Path="CollectX.API.Database/CollectX.API.Database.sqlproj" Id="e2dcd3c6-ff0d-4037-a31e-e89573bd9462">
     <Build />
     <Deploy />
   </Project>

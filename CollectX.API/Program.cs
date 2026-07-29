@@ -1,6 +1,7 @@
 using CollectX.API;
 using CollectX.API.Configuration;
 using CollectX.API.Middleware;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using NLog;
 using NLog.Web;
@@ -23,6 +24,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApiConfiguration(builder.Configuration);
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("ConnectDB")));
+builder.Services.AddScoped<PasswordHasher<IdentityUser>>();
 builder.Services.RegisterServices();
 var app = builder.Build();
 
