@@ -4,6 +4,7 @@ using CollectX.API.Common.Heplers;
 using CollectX.API.Contracts.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using static CollectX.API.Common.Enum.CommonEnums;
 
@@ -63,15 +64,25 @@ namespace CollectX.API.Areas.Admin.Controllers
             return response;
         }
         [HttpPost("ChangePassword")]
-        public async Task<BaseApiResponse> ChangePassword(ChangePasswordRequestModel changePasswordRequest)
+        public async Task<ApiPostResponse<dynamic>> ChangePassword(ChangePasswordRequestModel changePasswordRequest)
         {
-            BaseApiResponse response = new();
+            ApiPostResponse<dynamic> response = new();
             int UserId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value != null ? Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value) : 0;
             changePasswordRequest.UserId = UserId;
-            //match old password with db stored password
-             
 
+            var oldPassword = await _accountService.GetOldPassword(UserId);
 
+            bool isPasswordValid = _passwordHasher.VerifyHashedPassword(new IdentityUser(), oldPassword, changePasswordRequest.OldPassword) == PasswordVerificationResult.Success;
+            if(!isPasswordValid)
+            {
+                response.Success = false;
+                response.Message = "Invalid Old Password";
+                _logger.LogInformation("Invalid Old Password", changePasswordRequest.UserId);
+                return response;
+            }
+
+            string NewPassowrdHash = _passwordHasher.HashPassword(new IdentityUser(), changePasswordRequest.NewPassword);
+            changePasswordRequest.NewPassword = NewPassowrdHash;
 
             var result = await _accountService.ChangePassword(changePasswordRequest);
 

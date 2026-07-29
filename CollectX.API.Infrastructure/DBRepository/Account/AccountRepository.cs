@@ -17,14 +17,14 @@ namespace CollectX.API.Infrastructure.DBRepository.Account
         public AccountRepository(IDbConnection db)
         {
             _db = db;
-            
+
         }
 
         public async Task<LoginResponseModel> LoginUser(LoginRequestModel loginRequest)
         {
             DynamicParameters param = new();
             param.Add("@Email", loginRequest.Email);
-           // param.Add("@Password", loginRequest.Password);
+            // param.Add("@Password", loginRequest.Password);
 
             var result = await _db.QueryFirstOrDefaultAsync<LoginResponseModel>(StoredProcedures.SP_UserLogin, param, commandType: CommandType.StoredProcedure);
             return result;
@@ -45,6 +45,14 @@ namespace CollectX.API.Infrastructure.DBRepository.Account
 
             var result = await _db.QueryFirstOrDefaultAsync<LoginResponseModel>(StoredProcedures.SP_GetUserDetails, param, commandType: CommandType.StoredProcedure);
             return result;
-        } 
+        }
+        public async Task<string> GetOldPassword(int userId)
+        {
+            DynamicParameters param = new();
+            param.Add("@UserId", userId);
+             
+            var result = await _db.QueryFirstOrDefaultAsync<string>(StoredProcedures.SP_GetOldPassword,param,commandType: CommandType.StoredProcedure);
+            return result;
+        }
     }
 }

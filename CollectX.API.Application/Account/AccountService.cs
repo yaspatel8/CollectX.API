@@ -26,5 +26,9 @@ namespace CollectX.API.Application.Account
         {
             return await _accountRepository.GetUserDetails(userId);
         }
+        public async Task<string> GetOldPassword(int UserId)
+        {
+            return await _accountRepository.GetOldPassword(UserId);
+        }
     }
 }
