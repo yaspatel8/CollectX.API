@@ -1,11 +1,13 @@
 ﻿using CollectX.API.Common.Heplers;
 using CollectX.API.Contracts.Common;
 using CollectX.API.Contracts.Login;
+using CollectX.API.Contracts.User;
 using Dapper;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net;
 using System.Text;
 
 namespace CollectX.API.Infrastructure.DBRepository.Account
@@ -52,6 +54,21 @@ namespace CollectX.API.Infrastructure.DBRepository.Account
             param.Add("@UserId", userId);
              
             var result = await _db.QueryFirstOrDefaultAsync<string>(StoredProcedures.SP_GetOldPassword,param,commandType: CommandType.StoredProcedure);
+            return result;
+        }
+        public async Task<ProfileResponseModel> EditProfile(UserModel profileRequest)
+        {
+            DynamicParameters param = new();
+            param.Add("@Id", profileRequest.Id);
+            param.Add("@FirstName", profileRequest.FirstName);
+            param.Add("@LastName", profileRequest.LastName);
+            param.Add("@Email", profileRequest.Email);
+            param.Add("@PhoneNumber", profileRequest.PhoneNumber);
+            param.Add("@Image", profileRequest.ImagePath);
+            param.Add("@Address", profileRequest.Address);
+            param.Add("@UpdatedBy", profileRequest.UpdatedBy);
+            param.Add("@OldFileName", dbType: DbType.String, direction: ParameterDirection.Output, size: 200);
+            var result = await _db.QueryFirstOrDefaultAsync<ProfileResponseModel>(StoredProcedures.SP_EditProfile, param, commandType: CommandType.StoredProcedure);
             return result;
         }
     }

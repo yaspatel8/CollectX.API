@@ -1,6 +1,7 @@
 ﻿using CollectX.API.Common.Heplers;
 using CollectX.API.Contracts.Common;
 using CollectX.API.Contracts.Login;
+using CollectX.API.Contracts.User;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,6 @@ namespace CollectX.API.Infrastructure.DBRepository.Account
         Task<ResponseModel> ChangePassword(ChangePasswordRequestModel changePasswordRequest); 
         Task<LoginResponseModel> GetUserDetails(int userId);
         Task<string> GetOldPassword(int UserId);
-        Task<>
+        Task<ProfileResponseModel> EditProfile(UserModel profileRequest);
     }
 }

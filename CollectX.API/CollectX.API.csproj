@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CollectX.API.Infrastructure\CollectX.API.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\ProfileImages\" />
+  </ItemGroup>
+
 </Project>

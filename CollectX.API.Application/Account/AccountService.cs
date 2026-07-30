@@ -1,5 +1,6 @@
 ﻿using CollectX.API.Contracts.Common;
 using CollectX.API.Contracts.Login;
+using CollectX.API.Contracts.User;
 using CollectX.API.Infrastructure.DBRepository.Account;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,10 @@ namespace CollectX.API.Application.Account
         public async Task<string> GetOldPassword(int UserId)
         {
             return await _accountRepository.GetOldPassword(UserId);
+        }
+        public async Task<ProfileResponseModel> EditProfile(UserModel profileRequest)
+        {
+            return await _accountRepository.EditProfile(profileRequest);
         }
     }
 }
