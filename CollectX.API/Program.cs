@@ -20,12 +20,13 @@ builder.Host.UseNLog();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
-
+builder.Services.AddSettingsConfiguration(builder.Configuration);
 builder.Services.AddOpenApiConfiguration(builder.Configuration);
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(builder.Configuration.GetConnectionString("ConnectDB")));
 builder.Services.AddScoped<PasswordHasher<IdentityUser>>();
 builder.Services.RegisterServices();
+builder.Services.AddCorsConfiguration(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +38,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors(CorsConfig.DefaultPolicyName);
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<GlobalExceptionMiddleware>();
