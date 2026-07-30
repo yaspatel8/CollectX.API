@@ -12,7 +12,10 @@
     [UpdatedBy]   BIGINT         NULL,
     [IsActive]    BIT            DEFAULT ((1)) NULL,
     [IsDeleted]   BIT            DEFAULT ((0)) NULL,
+    [RoleId]      BIGINT         DEFAULT ((1)) NOT NULL,
+    [ImagePath]   NVARCHAR (MAX) NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([RoleId]) REFERENCES [dbo].[roles] ([Id]),
     UNIQUE NONCLUSTERED ([Email] ASC),
     UNIQUE NONCLUSTERED ([PhoneNumber] ASC)
 );

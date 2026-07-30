@@ -66,5 +66,18 @@
     <Build Include="dbo\Tables\Pockets.sql" />
     <Build Include="dbo\Tables\Colors.sql" />
     <Build Include="dbo\Stored Procedures\SP_UserLogin.sql" />
+    <Build Include="dbo\Tables\UserOTP.sql" />
+    <Build Include="dbo\Tables\roles.sql" />
+    <Build Include="dbo\Tables\Binders.sql" />
+    <Build Include="dbo\Stored Procedures\SP_SetsGetAll.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ResetPassword.sql" />
+    <Build Include="dbo\Stored Procedures\SP_PocketsGetAll.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetUserDetails.sql" />
+    <Build Include="dbo\Stored Procedures\SP_GetOldPassword.sql" />
+    <Build Include="dbo\Stored Procedures\SP_EditProfile.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ColorsGetAll.sql" />
+    <Build Include="dbo\Stored Procedures\SP_ChangePassword.sql" />
+    <Build Include="dbo\Stored Procedures\SP_BindersSave.sql" />
+    <Build Include="dbo\Stored Procedures\SP_BinderDelete.sql" />
   </ItemGroup>
 </Project>
