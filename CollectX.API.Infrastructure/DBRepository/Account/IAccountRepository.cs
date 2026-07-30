@@ -13,5 +13,6 @@ namespace CollectX.API.Infrastructure.DBRepository.Account
         Task<ResponseModel> ChangePassword(ChangePasswordRequestModel changePasswordRequest); 
         Task<LoginResponseModel> GetUserDetails(int userId);
         Task<string> GetOldPassword(int UserId);
+        Task<>
     }
 }

@@ -11,6 +11,7 @@ namespace CollectX.API.Common.Heplers
         public const string SP_ChangePassword = "SP_ChangePassword";
         public const string SP_GetUserDetails = "SP_GetUserDetails";
         public const string SP_GetOldPassword = "SP_GetOldPassword";
+        public const string SP_EditProfile = "SP_EditProfile";
         #endregion
 
         #region Binders
